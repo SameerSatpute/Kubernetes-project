@@ -102,3 +102,6 @@ command: kubectl delete namespace webapp
 - Second service (Redis) to make network policies more meaningful
 - Prometheus + Grafana for monitoring
 - CI/CD pipeline with Jenkins
+
+  <img width="1260" height="701" alt="App" src="https://github.com/user-attachments/assets/7160bf6c-f2dd-49a0-bd25-f4ddd2f91fb9" />
+
