@@ -2,16 +2,9 @@
 
 A production-style Kubernetes deployment of an NGINX web application using open-source container images. Built and debugged on a real cluster not just copy-pasted manifests.
 
-## Project Structure
+## Project Overview:
 
-KUBERNETES/
-├── ns.yaml                # Namespace + ResourceQuota + LimitRange
-├── network-policy.yaml    # Zero-trust — default deny + selective allow
-├── configmap.yaml         # nginx.conf + HTML decoupled from image
-├── deployment.yaml        # Rolling updates, probes, non-root, init container
-├── service.yaml           # ClusterIP internal routing port 80-8080
-├── ingress.yaml           # Host-based routing with rate limiting
-└── hpa.yaml               # Autoscaling on CPU + Memory with behavior tuning
+This project is a Kubernetes-based NGINX web application setup that includes namespace isolation with resource quotas and limits, network policies enforcing zero-trust security, ConfigMap-based externalized NGINX configuration and HTML, a deployment with rolling updates, health probes, non-root security and init containers, a ClusterIP service for internal routing, ingress for host-based routing with rate limiting, and an HPA configuration for autoscaling based on CPU and memory with tuning behavior.
 
 ## Concepts Covered
 
