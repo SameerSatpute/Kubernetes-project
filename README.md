@@ -110,9 +110,7 @@ Outputs:
   <img width="1260" height="701" alt="App" src="https://github.com/user-attachments/assets/7160bf6c-f2dd-49a0-bd25-f4ddd2f91fb9" />
   
   <img width="1280" height="395" alt="endpoints" src="https://github.com/user-attachments/assets/9b5b6afc-5240-44eb-92eb-5ba2f24bf1f8" />
-  
-  <img width="1280" height="960" alt="hpa" src="https://github.com/user-attachments/assets/313521e8-61c6-4411-8f34-07efe812ac82" />
-  
+    
   <img width="1280" height="960" alt="port-forward" src="https://github.com/user-attachments/assets/aae015cd-c58c-41b8-b579-b856624f286e" />
   
   <img width="1280" height="960" alt="resources" src="https://github.com/user-attachments/assets/f81ff937-b90a-46c4-9b69-5dde787d33db" />
