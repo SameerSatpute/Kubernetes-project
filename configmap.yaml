@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: webapp
+  labels:
+    app: nginx-webapp
+data:
+  nginx.conf: |
+    pid /tmp/nginx.pid;
+    events {
+      worker_connections 1024;
+    }
+    http {
+      include       /etc/nginx/mime.types;
+      default_type  application/octet-stream;
+      log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent"';
+      access_log /dev/stdout main;
+      error_log  /dev/stderr warn;
+      sendfile on;
+      keepalive_timeout 85;
+      gzip on;
+      gzip_types text/plain text/css application/json application/javascript;
+      server {
+        listen 8080;
+        server_name _;
+        root /usr/share/nginx/html;
+        index index.html;
+        location /health {
+          access_log off;
+          return 200 "OK\n";
+          add_header Content-Type text/plain;
+        }
+        location / {
+          try_files $uri $uri/ /index.html;
+        }
+        error_page 404 /404.html;
+        error_page 500 502 503 504 /50x.html;
+      }
+    }
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Kubernetes Project</title>
+    </head>
+    <body>
+      <h1>NGINX running on Kubernetes</h1>
+    </body>
+    </html>

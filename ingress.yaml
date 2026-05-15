@@ -1,0 +1,31 @@
+# Ingress
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-webapp-ingress
+  namespace: webapp
+  labels:
+    app: nginx-webapp
+  annotations:
+    # Redirect all HTTP traffic to HTTPS
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # Rate limiting — max 100 requests/second per IP
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+    # Proxy read timeout 
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: webapp.local    # Replace with your domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix      # Prefix: matches / and anything under it
+            backend:
+              service:
+                name: nginx-webapp-svc
+                port:
+                  number: 80
+

@@ -1,0 +1,61 @@
+# NetworkPolicy 1: Default Deny All
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: webapp
+spec:
+  podSelector: {}       # Applies to ALL pods in the namespace
+  policyTypes:
+    - Ingress
+
+
+---
+
+# NetworkPolicy 2: Allow Ingress from Ingress Controller
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-controller
+  namespace: webapp
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx-webapp    # Targets our application pods
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 8080
+
+---
+
+
+# NetworkPolicy 3: Allow Internal Pod Communication
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-same-namespace
+  namespace: webapp
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx-webapp
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        # Any pod in the same namespace
+        - podSelector: {}  
+
