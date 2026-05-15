@@ -80,11 +80,11 @@ Real issues hit while deploying on an actual cluster:
 
 1. Port 80 permission denied
 Non-root containers cannot bind to ports below 1024. nginx crashed with `bind() to 0.0.0.0:80 failed (13: Permission denied)`.
-Fixed by setting nginx to listen on port `8080`. Service maps external port `80` → container port `8080`.
+Fixed by setting nginx to listen on port `8080`. Service maps external port `80` - container port `8080`.
 
 2. PID file permission denied
 nginx tried to write its PID to `/var/run/nginx.pid` which is owned by root.
-Fixed by adding `pid /tmp/nginx.pid;` at the top of `nginx.conf` — `/tmp` is writable by all users.
+Fixed by adding `pid /tmp/nginx.pid;` at the top of `nginx.conf` `/tmp` is writable by all users.
 
 3. Cache directory chown failed
 nginx tried to `chown /var/cache/nginx` at startup but the container lacked root permissions.
