@@ -23,7 +23,7 @@ HPA CPU + Memory autoscaling `hpa.yaml`
 
 ## Prerequisites
 
-- Kubernetes cluster — local ([minikube](https://minikube.sigs.k8s.io/)) or cloud (GKE, EKS, AKS)
+- Kubernetes cluster local ([minikube](https://minikube.sigs.k8s.io/)) or cloud (GKE, EKS, AKS)
 - `kubectl` configured and pointing to your cluster
 - Ingress Controller:
 
