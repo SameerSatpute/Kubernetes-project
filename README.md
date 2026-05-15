@@ -18,7 +18,7 @@ Non-root container + dropped capabilities `deployment.yaml`
 Liveness + Readiness probes `deployment.yaml`
 ClusterIP Service `service.yaml` 
 Ingress with rate limiting  `ingress.yaml`
-HPA — CPU + Memory autoscaling `hpa.yaml`
+HPA CPU + Memory autoscaling `hpa.yaml`
 
 
 ## Prerequisites
